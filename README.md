@@ -52,6 +52,7 @@ venv\Scripts\activate
 
 # запуск сервера
 python src/server.py
+```
 
 ### Терминал 2 - Запуск клиента
 
