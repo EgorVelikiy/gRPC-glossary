@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package glossary;
+
+// Сервис для управления глоссарием терминов
+service GlossaryService {
+  // Получение списка всех терминов
+  rpc GetTerms (GetTermsRequest) returns (GetTermsResponse);
+  
+  // Получение информации о термине по ключевому слову
+  rpc GetTerm (GetTermRequest) returns (GetTermResponse);
+  
+  // Добавление нового термина
+  rpc AddTerm (AddTermRequest) returns (AddTermResponse);
+  
+  // Обновление существующего термина
+  rpc UpdateTerm (UpdateTermRequest) returns (UpdateTermResponse);
+  
+  // Удаление термина
+  rpc DeleteTerm (DeleteTermRequest) returns (DeleteTermResponse);
+}
+
+// Запрос на получение списка терминов
+message GetTermsRequest {
+}
+
+// Ответ со списком терминов
+message GetTermsResponse {
+  repeated Term terms = 1;
+}
+
+// Запрос на получение термина
+message GetTermRequest {
+  string keyword = 1;
+}
+
+// Ответ с термином
+message GetTermResponse {
+  bool success = 1;
+  Term term = 2;
+  string message = 3;
+}
+
+// Запрос на добавление термина
+message AddTermRequest {
+  string keyword = 1;
+  string description = 2;
+}
+
+// Ответ на добавление термина
+message AddTermResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Запрос на обновление термина
+message UpdateTermRequest {
+  string keyword = 1;
+  string description = 2;
+}
+
+// Ответ на обновление термина
+message UpdateTermResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Запрос на удаление термина
+message DeleteTermRequest {
+  string keyword = 1;
+}
+
+// Ответ на удаление термина
+message DeleteTermResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Термин
+message Term {
+  string keyword = 1;
+  string description = 2;
+}
+
